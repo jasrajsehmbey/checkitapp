@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483399412445",
+    "project_id": "checkit-b3f86",
+    "storage_bucket": "checkit-b3f86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483399412445:android:4c09a957fd4e29fdfa8934",
+        "android_client_info": {
+          "package_name": "com.jasraj.todoey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483399412445-1tmu5ebmdrl1tgu5idugc500eepjq1sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqRD5ixOjqlahoxeGTJBmNyhSrEWNMlRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483399412445-1tmu5ebmdrl1tgu5idugc500eepjq1sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
