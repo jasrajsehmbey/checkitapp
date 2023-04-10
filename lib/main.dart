@@ -18,9 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ToDoItems>(
       create: (context) => ToDoItems(),
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRoutes.generateRoute,
+        theme: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.fromSwatch(
+            accentColor: Colors.yellow.shade800,
+          ),
+        ),
         initialRoute: AppRoutes.splashRoute,
       ),
     );

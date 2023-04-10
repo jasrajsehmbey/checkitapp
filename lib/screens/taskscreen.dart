@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
+import 'package:checkit/screens/product_search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -164,6 +165,53 @@ class _TaskScreenState extends State<TaskScreen> {
                           color: Colors.white,
                           fontSize: 50.00,
                           fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Center(
+                        child: SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: TextField(
+                            onTap: () {
+                              showSearch(
+                                  context: context,
+                                  delegate: ProductSearchDelegate(uid: uid!));
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            autofocus: false,
+                            maxLines: 1,
+                            textAlignVertical: TextAlignVertical.bottom,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                            decoration: InputDecoration(
+                              suffixIcon: const Icon(
+                                Icons.search_sharp,
+                                color: Colors.black54,
+                                size: 25,
+                              ),
+                              hintText: 'Hop on to your choice',
+                              hintStyle: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 17,
+                                fontWeight: FontWeight.w300,
+                              ),
+                              border: InputBorder.none,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(45),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(45),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ],

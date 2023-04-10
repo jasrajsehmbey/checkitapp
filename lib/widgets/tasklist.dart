@@ -7,6 +7,8 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../app/constants/baseurl.dart';
 import '../app/routes.dart';
 import '../core/notifiers.dart';
+import '../core/remove_item.dart';
+import '../core/update_item.dart';
 import 'tasktile.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -34,36 +36,6 @@ class _TaskListState extends State<TaskList> {
     });
   }
 
-  Future<int> removeItem(String note) async {
-    var url = "${baseURL}/delete/${widget.uid}";
-    final http.Response response = await http.delete(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'note': note,
-      }),
-    );
-    int code = response.statusCode;
-    return code;
-  }
-
-  Future<int> updateItem(String note) async {
-    var url = "${baseURL}/update/${widget.uid}";
-    final http.Response response = await http.patch(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'note': note,
-      }),
-    );
-    int code = response.statusCode;
-    return code;
-  }
-
   bool loader = false;
 
   @override
@@ -82,7 +54,7 @@ class _TaskListState extends State<TaskList> {
                       setState(() {
                         loader = true;
                       });
-                      int success = await removeItem(task.note);
+                      int success = await removeItem(task.note, widget.uid);
                       setState(() {
                         loader = false;
                       });
@@ -96,7 +68,7 @@ class _TaskListState extends State<TaskList> {
                       setState(() {
                         loader = true;
                       });
-                      int success = await updateItem(task.note);
+                      int success = await updateItem(task.note, widget.uid);
                       setState(() {
                         loader = false;
                       });
