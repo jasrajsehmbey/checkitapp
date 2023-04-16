@@ -43,7 +43,7 @@ class AppRoutes {
       default:
         {
           return MaterialPageRoute(
-            builder: (_) => const LoginScreen(),
+            builder: (_) => const SplashScreen(),
             settings: settings,
           );
         }

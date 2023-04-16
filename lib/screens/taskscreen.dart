@@ -32,6 +32,7 @@ class _TaskScreenState extends State<TaskScreen> {
       print("im in");
       http.Response response = await http.get(Uri.parse('${baseURL}/$uid'));
       int code = response.statusCode;
+      print(code);
       print(response.body);
       if (code == 200) {
         print("${uid} table created successfully");
@@ -193,7 +194,7 @@ class _TaskScreenState extends State<TaskScreen> {
                                 color: Colors.black54,
                                 size: 25,
                               ),
-                              hintText: 'Hop on to your choice',
+                              hintText: 'Hop on to your note',
                               hintStyle: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 17,
