@@ -1,6 +1,6 @@
-# todoey
+# CheckIt
 
-A new Flutter project.
+To do list project using SQL and NodeJs
 
 ## Getting Started
 
