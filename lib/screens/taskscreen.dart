@@ -29,15 +29,23 @@ class _TaskScreenState extends State<TaskScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     action = prefs.getBool('createdatabase')!;
     if (action == true) {
-      print("im in");
-      http.Response response = await http.get(Uri.parse('${baseURL}/$uid'));
-      int code = response.statusCode;
-      print(code);
-      print(response.body);
-      if (code == 200) {
-        print("${uid} table created successfully");
+      try {
+        print("im in");
+        http.Response response = await http.get(Uri.parse('${baseURL}/$uid'));
+        int code = response.statusCode;
+        print(code);
+        print(response.body);
+        if (code == 200) {
+          print("${uid} table created successfully");
+          prefs.setBool('createdatabase', false);
+          print("gone false");
+        } else if (code == 404) {
+          prefs.setBool('createdatabase', false);
+          print("404 error");
+        }
+      } catch (e) {
+        print(e);
         prefs.setBool('createdatabase', false);
-        print("gone false");
       }
     }
   }
@@ -119,11 +127,6 @@ class _TaskScreenState extends State<TaskScreen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "Clear All",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              ),
                               GestureDetector(
                                 onTap: () async {
                                   setState(() {

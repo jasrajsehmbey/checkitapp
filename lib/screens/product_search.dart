@@ -105,7 +105,7 @@ class ProductSearchDelegate extends SearchDelegate {
         width: double.infinity,
         height: double.infinity,
         color: Colors.white,
-        child: Center(child: Text('No items')),
+        child: Center(child: Text('No notes')),
       );
     }
   }
@@ -176,12 +176,12 @@ class ProductSearchDelegate extends SearchDelegate {
               );
             } else {
               return Center(
-                child: Text('No Items'),
+                child: Text('No notes'),
               );
             }
           } else {
             return Center(
-              child: Text('No Items'),
+              child: Text('No notes'),
             );
           }
         } else if (snapshot.hasError) {
