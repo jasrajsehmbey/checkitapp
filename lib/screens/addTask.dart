@@ -19,6 +19,7 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
+  bool loader = false;
   Future<int> AddtoList(String note) async {
     var url = "${baseURL}/insert/${widget.uid}";
     final http.Response response = await http.post(
@@ -45,7 +46,6 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     String message = '';
-
     return Container(
       color: Color(
           0xff757575), //to match the left out curved part as same color that of background
@@ -169,7 +169,13 @@ class _AddTaskState extends State<AddTask> {
             ),
             MaterialButton(
               onPressed: () async {
+                setState(() {
+                  loader = true;
+                });
                 int success = await AddtoList(message);
+                setState(() {
+                  loader = false;
+                });
                 if (success == 200) {
                   print("added");
                   Navigator.of(context).pop();
@@ -183,10 +189,14 @@ class _AddTaskState extends State<AddTask> {
                   color: Colors.yellow.shade800,
                 ),
                 child: Center(
-                  child: Text(
-                    'ADD',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  child: loader
+                      ? CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          'ADD',
+                          style: TextStyle(color: Colors.white),
+                        ),
                 ),
               ),
             ),
