@@ -1,1 +1,1 @@
-const baseURL = 'https://pear-happy-bandicoot.cyclic.app';
+const baseURL = 'https://shy-tan-chick-suit.cyclic.app';
