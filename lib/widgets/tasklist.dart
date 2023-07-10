@@ -21,10 +21,16 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
+  bool loader = false;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<ToDoItems>(context, listen: false).getListDetail(widget.uid);
+      setState(() {
+        loader = true;
+      });
+      Provider.of<ToDoItems>(context, listen: false)
+          .getListDetail(widget.uid)
+          .whenComplete(() => loader = false);
     });
     super.initState();
   }
@@ -32,11 +38,12 @@ class _TaskListState extends State<TaskList> {
   void _reloadPage() {
     setState(() {
       // empty setState body triggers a rebuild
-      Provider.of<ToDoItems>(context, listen: false).getListDetail(widget.uid);
+      loader = true;
+      Provider.of<ToDoItems>(context, listen: false)
+          .getListDetail(widget.uid)
+          .whenComplete(() => loader = false);
     });
   }
-
-  bool loader = false;
 
   @override
   Widget build(BuildContext context) {

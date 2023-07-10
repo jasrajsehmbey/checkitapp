@@ -55,8 +55,13 @@ class _TaskScreenState extends State<TaskScreen> {
     // TODO: implement didChangeDependencies
     uid = FirebaseAuth.instance.currentUser!.uid;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loader = true;
+    });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<ToDoItems>(context, listen: false).getListDetail(uid!);
+      Provider.of<ToDoItems>(context, listen: false)
+          .getListDetail(uid!)
+          .whenComplete(() => loader = false);
     });
     setState(() {
       loader = true;
